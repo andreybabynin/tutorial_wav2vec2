@@ -1,11 +1,17 @@
-# tutorial wav2vec
+#### Тренировка wav2vec2 на датасете bond005/sberdevices_golos_100h_farfield
 
-Частично обученную модель на датасете ComonVoice6 под русский язык можно скачать с    https://disk.yandex.ru/d/Cpr7H0qFocWi6w  файл «model.zip» , который надо разархивировать в папку model. Или выполнить download_model.ipynb .
+В процессе тренировки были предприняты следующие шаги:
 
-Пример до обучения модели Fine-Tune-Wav2vec.ipynb
+1. Весь датасет переведен в режим streaming для экономии RAM.
+2. Испробованы различные аугметации на train с использованием библиотеки SOX
+    - изменение скорости воспроизведения [0.9, 1.0, 1.1]
+    - добавление эффекта эха ['echo',  '0.8', '0.88', '100', '0.4']
+    - добавление белого шума ['synth', '0', 'whitenoise']
+3. Также были испробованы различные ввиды scheduler от стандартного линейного до COSINEANNEALINGLR
 
-Пример использования модели inference.ipynb
+Ход обучения доступен в папке notebooks. Процесс обучения задокументирован в сервисе Neptune. Сводная статистика в файле neptune_stat.csv
 
-Пример принудительного  выравнивания аудио и текста по времени forced_alignment_ctc.ipynb
+Результаты инференса доступны в файле audio-inference.ipynb
 
-Описание домашнего задания в hw.txt
+- Оригинальная модель [здесь](https://1drv.ms/u/s!Av2LN9C0RWBlgYEw2BD_BpL5rn3fTw?e=6bqEML)
+- Обученная модель [здесь](https://1drv.ms/u/s!Av2LN9C0RWBlgYFBONblJVLkkuxKyA?e=VFwYkK)
